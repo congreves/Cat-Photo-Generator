@@ -1,31 +1,38 @@
 * {
   box-sizing: border-box;
   margin: 0 auto;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-
-
 }
-
-/* GRID */
 
 body {
-margin: 0 5% 0 5%;
-background: rgb(246,130,100);
-background: radial-gradient(circle, rgba(246,130,100,1) 15%, rgba(119,104,210,1) 100%);
+  margin: 0 5% 0 5%;
 }
+
 header {
-display: grid;
-padding: 1em;
-grid-template-rows: 1fr 1fr;
-
-
+  display: grid;
+  grid-template-rows: 1fr 1fr;
 }
-.template {
+h1 {
+  padding-top: 1em;
+  padding-bottom: 0.5em;
+}
+
+.button-section {
   display: flex;
-  justify-items: start;
+  flex-direction: row;
+  flex-wrap: wrap;
   max-width: 70em;
-  
+  gap: 1.5em;
+  margin-bottom: 1em;
 }
+
+button {
+  width: 70%;
+  border-radius: 20px;
+  border: none;
+  padding: 1em 0 1em 0;
+}
+
+/* IMAGE SECTION */
 
 .image-grid {
   display: grid;
@@ -39,25 +46,62 @@ img {
   aspect-ratio: 1/1;
   border-radius: 5%;
 }
-button:hover {
-    background-color: cadetblue;
-    transition: width 1.2s ease-in-out 0.2s;
+
+/* LOADING ANIMATION */
+
+.loading-animation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0;
+  max-height: 50vh;
 }
-button {
-    background-color: cadetblue;
-    transition: width 1.2s ease-in-out 0.2s;
-    padding: 1em;
-    max-width: 70em;
-    
+
+#loading {
+  animation: rotate 3s linear infinite;
+  height: 20px;
+  transform-origin: bottom center;
+  visibility: hidden;
 }
+#loading.display {
+  visibility: visible;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.circle {
+  animation: grow 1.5s linear infinite;
+  border-radius: 50%;
+  display: inline-block;
+  margin: -10px;
+  height: 40px;
+  width: 40px;
+  transform: scale(0);
+}
+
+.circle:nth-of-type(2) {
+  animation-delay: 0.75s;
+}
+
+@keyframes grow {
+  50% {
+    transform: scale(1);
+  }
+}
+
+/* MEDIA QUERYS */
 
 @media (min-width: 600px) {
   .image-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  .template {
-   flex-wrap: nowrap;
-      
+  .button-section {
+    flex-wrap: nowrap;
   }
 }
 
